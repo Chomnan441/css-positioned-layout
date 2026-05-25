@@ -1,1 +1,113 @@
-/* Start coding here */
+/* ล้างค่าพื้นฐาน */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+/* Header */
+.chat-header {
+  background-color: #7a7a7a;
+  color: white;
+  padding: 15px 20px;
+}
+
+.chat-header h1 {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+/* Chat Layout Container */
+.chat-container {
+  width: 100%;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* จัดฝั่งข้อความ ซ้าย-ขวา */
+.message-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.message-wrapper.right {
+  justify-content: flex-end;
+}
+
+.message-wrapper.left {
+  justify-content: flex-start;
+}
+
+/* สไตล์พื้นฐานของกล่องข้อความ */
+.message-box {
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-size: 16px;
+  max-width: 300px;
+  min-width: 180px;
+  word-wrap: break-word;
+}
+
+/* สีของกล่องข้อความแต่ละแบบ */
+.green-box {
+  background-color: #00cc00;
+  color: black;
+}
+
+.light-gray-box {
+  background-color: #e0dbdb;
+  color: black;
+  position: relative; /* สำคัญ: เพื่อให้ปุ่ม x อ้างอิงตำแหน่งจากกล่องนี้ */
+}
+
+.dark-gray-box {
+  background-color: #7a7a7a;
+  color: white;
+}
+
+/* --- เทคนิค Positioned Layout ตามโจทย์ --- */
+
+/* 1. จัดตำแหน่งปุ่ม "x" ให้วางทับกล่องข้อความสีเทาอ่อน */
+.delete-btn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  background-color: #b0afaf;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 2. จัดตำแหน่งหางของกล่องข้อความสีเขียว */
+.green-box.tail {
+  position: relative; /* สำหรับสร้างหางยื่นออกไป */
+  border-top-right-radius: 0px; /* ปรับมุมให้เหลี่ยมตรงมุมบนขวา */
+}
+
+/* สร้างหางแหลมๆ โดยใช้ ::after pseudo-element */
+.green-box.tail::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -8px; /* ขยับให้ออกไปนอกกล่อง */
+  width: 0;
+  height: 0;
+  /* ใช้เทคนิค Border Triangle สร้างรูปสามเหลี่ยม */
+  border-top: 0px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 10px solid #00cc00; 
+}
